@@ -1,0 +1,70 @@
+KDTree - C++
+
+INSTALLATION/COMPILATION:
+	Unzip the folder
+	Run 'make' at the command prompt in the unzipped directory
+	The programs were last built on an Xubuntu 14.04 machine, written with C++11, and compiled with g++ 4.8.4 via gmake 3.81.
+	
+USAGE:
+	First, build the KD Tree from the data source file:
+	'build_kdtree <data input filename> <savetree filename>'
+	
+	Then run the points through the KD Tree to find each's nearest neighbor:
+	'query_kdtree <load tree filename> <query list filename> <result filename>'
+
+	<savetree filename> from the first command should equal <load tree filename>
+	from the second.
+	
+	To run the programs with the given exercise data, use the following commands:
+		"build_kdtree Data/sample_data.csv tree.txt"
+		"query_kdtree tree.txt Data/query_data.csv out.txt"
+
+FILES:
+	makefile
+	KDTree.h
+	KDTree.cpp
+	Point.h
+	Point.cpp
+	build_kdtree.cpp
+	query_kdtree.cpp
+	
+OPTIONS/OTHER:
+
+	In the subfolder "Data", algorithm verification calculations are included in "sample_data_calc.gnumeric",
+	For the first 10 points of "query_data.csv", the nearest neighbor from "sample_data.csv" is calculated
+	in the spreadsheet.
+
+	The subfolder "Types" contains the two programs coded to run on integer data
+	(as per the templated requirement of the exercise)
+	
+	To build the integer versions of the programs run 'make int' from the top-level directory.
+	
+	To run the integer versions with the included data:
+		"cd Types"
+		"build_kdtree_int ../Data/sample_data_int.csv tree.txt"
+		"query_kdtree_int tree.txt ../Data/query_data_int.csv out.txt"
+
+	The subfolder "Extension" contains the query program coded to use a different distance metric - Taxicab distance
+	(to demonstrate the type of extensibility described in the Bonus requirement of the exercise.  Both the splitting
+	axis determination function and the split point selection function are also overrideable)
+	
+	To build the Taxicab version of the query program run 'make taxi' from the top-level directory.
+	
+	To run the taxicab versions with the included data:
+		"build_kdtree Data/sample_data_taxi.csv tree.txt" 
+		(The distance calculation is soley contained in the query logic - no need for a new tree build program)
+		"cd Extension"		
+		"query_kdtree_taxicab ../tree.txt ../Data/query_data_taxicab.csv out.txt"
+	
+	The taxicab demo tree is very simple - a point at (0,6), and a point at (3,4).  
+	There is only one given query point, (0,0).  The change in metric is enough to generate a change to the
+	nearest neighbor solution.
+
+
+
+
+
+
+
+
+
